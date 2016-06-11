@@ -19,36 +19,41 @@ import java.io.OutputStream;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static String DB_PATH;
-    public static String DB_NAME = "impression";
-    private SQLiteDatabase myDataBase;
+    public static String DB_NAME = "impression.db";
+    SQLiteDatabase myDataBase=null;
     private final Context context;
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, 1);
         this.context = context;
-        DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        Log.d("path", DB_PATH + DB_NAME);
+        DB_PATH = "/data/data/" + context.getPackageName() + "/databases/"+DB_NAME;
+        Log.d("path", DB_PATH);
     }
 
-    public void createDataBase() {
+    public void createDataBase() throws IOException {
         boolean dbExist = checkDataBase();
         if (dbExist) {
             Log.d("exists", "true");
         }
         else {
-            this.getReadableDatabase();
-            try {
-                copyDataBase();
-            } catch (Exception e) {
-                e.printStackTrace();
+
+
+                myDataBase = context.openOrCreateDatabase("xyz",context.MODE_PRIVATE,null);
+                myDataBase.execSQL("CREATE TABLE `cards` (\n" +
+                        "\t`_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                        "\t`userEmail`\tTEXT,\n" +
+                        "\t`fileName`\tTEXT,\n" +
+                        "\t`json`\tTEXT,\n" +
+                        "\t`updatedAt`\tTEXT\n" +
+                        ");");
             }
-        }
     }
+
 
     private boolean checkDataBase() {
         boolean checkdb = false;
         try {
-            String myPath = context.getFilesDir().getAbsolutePath().replace("files", "databases") + File.separator + DB_NAME;
+            String myPath = context.getFilesDir().getAbsolutePath().replace("files", "databases") + File.separator + "xyz";
             File dbfile = new File(myPath);
             checkdb = dbfile.exists();
         } catch (SQLiteException e) {
@@ -58,7 +63,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     private void copyDataBase() throws IOException {
-        InputStream myInput = context.getAssets().open("articleSQL");
+        InputStream myInput = context.getAssets().open("database.db");
         String outFileName = DB_PATH + DB_NAME;
         OutputStream myOutput = new FileOutputStream(outFileName);
         byte[] buffer = new byte[1024];
