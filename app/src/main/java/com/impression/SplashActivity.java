@@ -19,6 +19,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
             DataBaseHelper helper = new DataBaseHelper(SplashActivity.this);
 
+
             }
         },SPLASH_DISPLAY_LENGTH);
     }
