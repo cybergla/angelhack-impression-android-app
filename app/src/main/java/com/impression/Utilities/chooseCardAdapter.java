@@ -20,7 +20,7 @@ public class chooseCardAdapter extends RecyclerView.Adapter<chooseCardAdapter.Vi
     ArrayList<CardModel> data ;
     GenericDataListener<CardModel> clickListener;
 
-    public  chooseCardAdapter(Context c , ArrayList<CardModel> cm , GenericDataListener<CardModel> cl)
+    public  chooseCardAdapter(Context c , ArrayList<CardModel> cm , GenericDataListener<Integer> cl)
     {
         context = c ;
         data = cm ;

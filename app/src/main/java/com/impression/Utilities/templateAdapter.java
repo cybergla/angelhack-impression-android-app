@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.impression.R;
@@ -23,12 +22,13 @@ public class templateAdapter extends RecyclerView.Adapter<templateAdapter.ViewHo
     {
         context = c;
         layoutIds = res;
-        onClickListener = oc;
+        onClickListener=oc;
     }
 
 
     int [] layoutIds;
     Context context;
+    ViewGroup par ;
     GenericDataListener<Integer> onClickListener;
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
@@ -52,13 +52,16 @@ public class templateAdapter extends RecyclerView.Adapter<templateAdapter.ViewHo
 
     @Override
     public templateAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+         if(par==null)
+             par=parent;
             View v = LayoutInflater.from(context).inflate(R.layout.adapter_template_item,parent,false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(templateAdapter.ViewHolder holder, int position) {
-        holder.screen.setText(context.getResources().getResourceEntryName(layoutIds[position]));
+
+        holder.screen.setText(context.getResources().getResourceName(layoutIds[position]));
 
     }
 

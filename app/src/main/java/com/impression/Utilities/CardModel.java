@@ -10,4 +10,12 @@ public class CardModel {
     public String templateId ;
     public String CardName ;
     public String Json ;
+
+    public CardModel(int id , String templateId , String Cd ,String json)
+    {
+        this.id = id ;
+        this.templateId = templateId;
+        CardName = Cd ;
+        this.Json = json ;
+    }
 }

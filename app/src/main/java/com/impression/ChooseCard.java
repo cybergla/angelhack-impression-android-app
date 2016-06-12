@@ -26,7 +26,8 @@ RecyclerView templateList;
         cards = new ArrayList<>();
         templateList = (RecyclerView)findViewById(R.id.rv_templates);
         templateList.setLayoutManager(new LinearLayoutManager(this));
-        chooseCardAdapter adapter = new(this,, new GenericDataListener<Integer>() {
+        fetchFromDb();
+        chooseCardAdapter adapter = new chooseCardAdapter(this,cards, new GenericDataListener<Integer>() {
             @Override
             public void onData(Integer data) {
 
@@ -40,8 +41,14 @@ RecyclerView templateList;
 
     void fetchFromDb()
     {
-        SharedPreferences pref = getSharedPreferences(PR)
-        SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseHelper.DB_NAME,MODE_PRIVATE,null);
-        Cursor c = db.rawQuery("Select * from cards where email = ?",new String[]{})
+        SharedPreferences pref = getSharedPreferences(Constants.PREFS ,MODE_PRIVATE);
+        String email = pref.getString("email",null);
+        SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(DataBaseHelper.DB_NAME,null);
+        Cursor c = db.rawQuery("Select * from cards where email = ?",new String[]{email});
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            cards.add(new CardModel(c.getInt(0), c.getString(2), c.getString(3), c.getString(4)));
+        }
+
     }
 }

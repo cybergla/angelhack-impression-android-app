@@ -1,18 +1,14 @@
 package com.impression;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -66,13 +62,25 @@ public class DesignActivity extends AppCompatActivity {
     Bitmap image ;
     int chosenCardLayout = -1;
 
+    EditText cardName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_design);
         main = (FrameLayout) findViewById(R.id.fl_main);
         cardContainer = (LinearLayout)findViewById(R.id.card_holder);
-
+        templateList = (RecyclerView)findViewById(R.id.rv_templates);
+        cardName = (EditText)findViewById(R.id.et_card_name);
+        templateList.setLayoutManager(new LinearLayoutManager(this));
+        templateAdapter adapter = new templateAdapter(this, templates, new GenericDataListener<Integer>() {
+            @Override
+            public void onData(Integer data) {
+                chosenCardLayout = data;
+                setCardForEdit(chosenCardLayout);
+            }
+        });
+        templateList.setAdapter(adapter);
         listPanel = (LinearLayout)findViewById(R.id.ll_list);
         listPanel.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -86,7 +94,15 @@ public class DesignActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if(chosenCardLayout!=-1);
+        if(chosenCardLayout!=-1){
+            chosenCardLayout=-1;
+            cardContainer.removeAllViewsInLayout();
+            image = null;
+            Interpolator intp = new android.view.animation.AccelerateInterpolator();
+            listPanel.animate().setDuration(800).setInterpolator(intp).translationY(0).start();
+        }
+        else
+            finish();
 
     }
 
@@ -97,7 +113,7 @@ public class DesignActivity extends AppCompatActivity {
         currentRequestingImage = -1;
        View root = LayoutInflater.from(this).inflate(id,cardContainer,true);
         getViews((ViewGroup) root);
-        Interpolator intp = new android.view.animation.OvershootInterpolator();
+        Interpolator intp = new android.view.animation.AccelerateInterpolator();
         listPanel.animate().setDuration(800).setInterpolator(intp).translationY(panelHeight).start();
         Log.d("texts",String.valueOf(texts.size()));
     }
@@ -173,6 +189,13 @@ public class DesignActivity extends AppCompatActivity {
 
 
     public void saveCard(View view)  {
+
+        if(cardName.getText().toString().isEmpty())
+        {
+            cardName.setError("please fill out card name");
+            return;s
+        }
+
         File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()));
         try {
             FileOutputStream fOut = new FileOutputStream(file);
@@ -192,7 +215,7 @@ public class DesignActivity extends AppCompatActivity {
             String xml = getResources().getResourceEntryName(chosenCardLayout);
             String dt = getDateTime();
             SQLiteDatabase db = openOrCreateDatabase(DataBaseHelper.DB_NAME,MODE_PRIVATE,null);
-            db.execSQL("INSERT INTO `cards` (email , xml , json , updatedAt) VALUES (?,?,?,?)",new Object[]{"name",xml,json,dt});
+            db.execSQL("INSERT INTO `cards` (email , xml , cardname , json , updatedAt) VALUES (?,?,?,?,?)",new Object[]{"name",xml,cardName.getText().toString(),json,dt});
             db.close();
             sendToBackend(xml,json,file);
         }
