@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.impression">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -29,7 +29,8 @@
         <activity android:name=".DesignActivity" />
         <activity android:name=".NfcEx" />
         <activity android:name=".QrScanner" />
-        <activity android:name=".QrGenerator"></activity>
+        <activity android:name=".QrGenerator" />
+        <activity android:name=".ChooseCard"></activity>
     </application>
 
 </manifest>

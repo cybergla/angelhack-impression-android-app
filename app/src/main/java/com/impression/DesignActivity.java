@@ -72,16 +72,7 @@ public class DesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_design);
         main = (FrameLayout) findViewById(R.id.fl_main);
         cardContainer = (LinearLayout)findViewById(R.id.card_holder);
-        templateList = (RecyclerView)findViewById(R.id.rv_templates);
-        templateList.setLayoutManager(new LinearLayoutManager(this));
-        templateAdapter adapter = new templateAdapter(this, templates, new GenericDataListener<Integer>() {
-            @Override
-            public void onData(Integer data) {
-                chosenCardLayout = data;
-                setCardForEdit(chosenCardLayout);
-            }
-        });
-        templateList.setAdapter(adapter);
+
         listPanel = (LinearLayout)findViewById(R.id.ll_list);
         listPanel.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
