@@ -55,27 +55,11 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-<<<<<<< HEAD
                 Intent intent = new Intent(SplashActivity.this,DesignActivity.class);
             startActivity(intent);
-=======
-                //String status=getPrefString("loginstatus",getApplicationContext());
-                Intent intent = new Intent(SplashActivity.this,QrGenerator.class);
-                Intent intent1 = new Intent(SplashActivity.this,MainActivity.class);
-                String status=getPrefString("loginstatus",getApplicationContext());
-                if(status.equals("loggedin"))
-                    startActivity(intent1);
-                else
-                    startActivity(intent);
->>>>>>> cc1a6fd67576e048f8c8012637fd57e232ad4012
             }
         },SPLASH_DISPLAY_LENGTH);
     }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> cc1a6fd67576e048f8c8012637fd57e232ad4012
 
 
     public String getDateTime() {

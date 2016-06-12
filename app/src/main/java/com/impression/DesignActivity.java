@@ -13,10 +13,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Interpolator;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -27,6 +31,7 @@ import com.impression.Utilities.BitmapLoader;
 import com.impression.Utilities.Constants;
 import com.impression.Utilities.DataBaseHelper;
 import com.impression.Utilities.GenericDataListener;
+import com.impression.Utilities.templateAdapter;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -50,8 +55,12 @@ import cz.msebera.android.httpclient.Header;
 
 public class DesignActivity extends AppCompatActivity {
 
+    int [] templates = {R.layout.template_1,R.layout.template_2,R.layout.template_3};
+    int panelHeight;
+
     FrameLayout main ;
-    LinearLayout cardContainer;
+    LinearLayout cardContainer,listPanel;
+    RecyclerView templateList;
     int currentRequestingImage=-1;
     ArrayList<EditText> texts ;
     Bitmap image ;
@@ -63,15 +72,42 @@ public class DesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_design);
         main = (FrameLayout) findViewById(R.id.fl_main);
         cardContainer = (LinearLayout)findViewById(R.id.card_holder);
+        templateList = (RecyclerView)findViewById(R.id.rv_templates);
+        templateList.setLayoutManager(new LinearLayoutManager(this));
+        templateAdapter adapter = new templateAdapter(this, templates, new GenericDataListener<Integer>() {
+            @Override
+            public void onData(Integer data) {
+                chosenCardLayout = data;
+                setCardForEdit(chosenCardLayout);
+            }
+        });
+        templateList.setAdapter(adapter);
+        listPanel = (LinearLayout)findViewById(R.id.ll_list);
+        listPanel.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                panelHeight = listPanel.getHeight();
+                listPanel.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
         texts = new ArrayList<>();
-        chosenCardLayout = R.layout.template_1;
-        setCardForEdit(chosenCardLayout);
+    }
+    @Override
+    public void onBackPressed()
+    {
+        if(chosenCardLayout!=-1);
+
     }
 
     public void setCardForEdit(int id)
     {
+        Log.d("jl","kh");
+        image = null;
+        currentRequestingImage = -1;
        View root = LayoutInflater.from(this).inflate(id,cardContainer,true);
         getViews((ViewGroup) root);
+        Interpolator intp = new android.view.animation.OvershootInterpolator();
+        listPanel.animate().setDuration(800).setInterpolator(intp).translationY(panelHeight).start();
         Log.d("texts",String.valueOf(texts.size()));
     }
 
