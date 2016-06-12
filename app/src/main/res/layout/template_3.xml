@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/et_designation"
+        android:layout_height="60dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_Full_name"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
+            android:hint="Full name"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/et_designation"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:hint="Designation"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:hint="Email"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

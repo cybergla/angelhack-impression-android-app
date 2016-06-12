@@ -5,18 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.impression.Utilities.DataBaseHelper;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import cz.msebera.android.httpclient.Header;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -36,17 +31,12 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this,DesignActivity.class);
             startActivity(intent);
             }
         },SPLASH_DISPLAY_LENGTH);
     }
 
-    public String getName()
-    {
-        SharedPreferences prefs = getSharedPreferences(PREFS,MODE_PRIVATE);
-        String date = prefs.getString("name", null);
-    }
 
 
     public String getDateTime() {
