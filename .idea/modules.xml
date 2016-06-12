@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/angelhack-impression-android-app.iml" filepath="$PROJECT_DIR$/angelhack-impression-android-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/impressions.iml" filepath="$PROJECT_DIR$/impressions.iml" />
     </modules>

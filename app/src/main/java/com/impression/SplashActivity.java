@@ -1,5 +1,6 @@
 package com.impression;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -20,6 +21,29 @@ import cz.msebera.android.httpclient.Header;
 
 public class SplashActivity extends AppCompatActivity {
 
+    public static String getPrefString(String nameOfPreference, Context c) {
+        // BT_debugger.showIt(objectName + ":getPrefString getting value of \""
+        // + nameOfPreference +
+        // "\" from the devices settings");
+        String ret = "";
+        try {
+            if (nameOfPreference.length() > 1) {
+                ret = "get the value here...";
+
+                SharedPreferences BT_prefs = c.getSharedPreferences(
+                        "MyPref", 0); // 0 - for private mode
+                ret = BT_prefs.getString(nameOfPreference, "");
+
+                // BT_debugger.showIt(objectName + ":getPrefString value is: \""
+                // + ret + "\"");
+
+            }
+        } catch (Exception e) {
+            //Log.e(TAG, "getPrefString EXCEPTION " + e.toString());
+        }
+        return ret;
+    }
+
     final int SPLASH_DISPLAY_LENGTH = 1000;
     final String PREFS = "impressions_prefs";
 
@@ -36,17 +60,19 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-            startActivity(intent);
+                //String status=getPrefString("loginstatus",getApplicationContext());
+                Intent intent = new Intent(SplashActivity.this,QrGenerator.class);
+                Intent intent1 = new Intent(SplashActivity.this,MainActivity.class);
+                String status=getPrefString("loginstatus",getApplicationContext());
+                if(status.equals("loggedin"))
+                    startActivity(intent1);
+                else
+                    startActivity(intent);
             }
         },SPLASH_DISPLAY_LENGTH);
     }
 
-    public String getName()
-    {
-        SharedPreferences prefs = getSharedPreferences(PREFS,MODE_PRIVATE);
-        String date = prefs.getString("name", null);
-    }
+
 
 
     public String getDateTime() {

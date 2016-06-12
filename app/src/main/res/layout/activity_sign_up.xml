@@ -14,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
         <EditText
             android:id="@+id/et_reg_email"
             android:layout_width="match_parent"
@@ -27,13 +28,13 @@
             android:id="@+id/et_reg_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            android:hint="Name"
+             />
         <EditText
             android:id="@+id/et_reg_conf_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <Button
@@ -42,6 +43,9 @@
             android:layout_height="wrap_content"
             android:text="Sign Up"
             android:layout_marginTop="50dp"
+            android:onClick="checkLogin"
+            android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
             />
     </LinearLayout>
 
