@@ -61,7 +61,7 @@ public class templateAdapter extends RecyclerView.Adapter<templateAdapter.ViewHo
     @Override
     public void onBindViewHolder(templateAdapter.ViewHolder holder, int position) {
 
-        holder.screen.setText(context.getResources().getResourceName(layoutIds[position]));
+        holder.screen.setText(context.getResources().getResourceEntryName(layoutIds[position]));
 
     }
 

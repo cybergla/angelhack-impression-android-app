@@ -80,7 +80,6 @@ public class QrScanner extends Activity implements QRCodeReaderView.OnQRCodeRead
 
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
-        myTextView.setText(text);
           String [] data = text.split("#");
           model = new CardModel(data[4],Integer.parseInt(data[3]),data[1],data[0],data[2]);
           mydecoderview.setVisibility(View.GONE);
@@ -103,6 +102,7 @@ public class QrScanner extends Activity implements QRCodeReaderView.OnQRCodeRead
             {
                 texts.get(i).setTextColor(fcolor);
                 texts.get(i).setText(array.getString(i));
+                texts.get(i).setEnabled(false);
             }
            applyImages(card,obj);
         }
@@ -116,15 +116,17 @@ public class QrScanner extends Activity implements QRCodeReaderView.OnQRCodeRead
         String baseName = path.substring(path.lastIndexOf("/")+1);
         URL newurl = new URL(Constants.URL_BASE+"upload/"+baseName);
         Bitmap bmp = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
-        if(imageView!=null)
+        if(imageView!=null) {
             imageView.setImageBitmap(bmp);
+            imageView.setClickable(false);
+        }
         saveInDb(bmp,path);
     }
 
     void saveInDb(Bitmap bmp ,String path) throws IOException {
         File file = new File(path);
         FileOutputStream fOut = new FileOutputStream(file);
-        bmp.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+        bmp.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to model file compressed as model JPEG with 85% compression rate
         fOut.flush();
         fOut.close();
         SQLiteDatabase db = openOrCreateDatabase(DataBaseHelper.DB_NAME,MODE_PRIVATE,null);

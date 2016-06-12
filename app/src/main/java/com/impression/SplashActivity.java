@@ -56,9 +56,17 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(SplashActivity.this,DesignActivity.class);
-            startActivity(intent);
-            }
+                String str=getPrefString("loginstatus",getApplicationContext());
+                if(str.equals("loggedin")) {
+                   Intent intent  = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                    else
+                    {
+                        Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                    }
+                }
         },SPLASH_DISPLAY_LENGTH);
     }
 

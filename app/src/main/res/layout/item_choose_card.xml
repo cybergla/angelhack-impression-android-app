@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:padding="30dp" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorAccent"
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
     <TextView
@@ -9,5 +9,11 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:layout_height="wrap_content"
-        android:id="@+id/img_screen"/>
-</LinearLayout>
+        android:id="@+id/textView"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:id="@+id/textView2"/>
+</RelativeLayout>

@@ -200,7 +200,7 @@ public class DesignActivity extends AppCompatActivity {
         File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()+".bmp"));
         try {
             FileOutputStream fOut = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+            image.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to model file compressed as model JPEG with 85% compression rate
             fOut.flush();
             fOut.close();
             JSONObject object = new JSONObject();
