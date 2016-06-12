@@ -16,7 +16,7 @@ import java.io.OutputStream;
 /**
  * Created by Pulkit Juneja on 11-Jun-16.
  */
-public class DataBaseHelper extends SQLiteOpenHelper {
+class DataBaseHelper extends SQLiteOpenHelper {
 
     public static String DB_PATH;
     public static String DB_NAME = "impression.db";
