@@ -235,6 +235,8 @@ public class NfcEx extends AppCompatActivity implements NfcAdapter.OnNdefPushCom
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_ex);
+
+        messagesToSendArray.add("stringtopass");
     }
 
     @Override
