@@ -17,6 +17,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/card_holder"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textStyle="bold"
+         android:textSize="15sp"
+         android:layout_marginBottom="10dp"
+         android:text="Name your Card"/>
+     <EditText
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:gravity="center"
+         android:id="@+id/et_card_name"
+         android:hint="Name me"
+         android:layout_gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,6 +101,7 @@
  <LinearLayout
      android:layout_width="match_parent"
      android:background="#FFFFFF"
+     android:orientation="vertical"
      android:id="@+id/ll_list"
      android:layout_height="match_parent">
      <android.support.v7.widget.RecyclerView

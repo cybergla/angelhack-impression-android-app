@@ -6,4 +6,5 @@ package com.impression.Utilities;
 public class Constants {
 
     public static String URL_BASE = "http://shareb.azurewebsites.net/";
+    final static public String PREFS = "impressions_prefs";
 }

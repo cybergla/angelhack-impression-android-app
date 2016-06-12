@@ -43,6 +43,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
                         "\t`_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                         "\t`userEmail`\tTEXT,\n" +
                         "\t`fileName`\tTEXT,\n" +
+                        "\t`cardname`\tTEXT,\n" +
                         "\t`json`\tTEXT,\n" +
                         "\t`updatedAt`\tTEXT\n" +
                         ");");

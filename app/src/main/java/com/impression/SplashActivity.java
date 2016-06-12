@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.impression.Utilities.Constants;
 import com.impression.Utilities.DataBaseHelper;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     final int SPLASH_DISPLAY_LENGTH = 1000;
-    final String PREFS = "impressions_prefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
     public String getDateTime() {
-        SharedPreferences prefs = getSharedPreferences(PREFS,MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
         String date = prefs.getString("last_sync", null);
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String dateTime = df.format(new Date());
