@@ -21,7 +21,7 @@ public class QrGenerator extends AppCompatActivity {
         setContentView(R.layout.activity_qr_generator);
         ImageView imageView = (ImageView) findViewById(R.id.qrimage);
         Intent intent = getIntent();
-        CardModel a=intent.getParcelableExtra("card");
+        CardModel a=(CardModel) intent.getSerializableExtra("card");
 
         try {
             Bitmap bitmap = encodeAsBitmap(""+a.CardName+"#"+a.templateId+"#"+a.Json+"#"+a.id+"#"+a.email+"");

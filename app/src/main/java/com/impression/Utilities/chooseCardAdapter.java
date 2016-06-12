@@ -29,7 +29,7 @@ public class chooseCardAdapter extends RecyclerView.Adapter<chooseCardAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.adapter_template_item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_choose_card,parent,false);
         return new ViewHolder(v);
     }
 

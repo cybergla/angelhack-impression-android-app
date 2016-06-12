@@ -32,7 +32,7 @@ CardModel model;
         setContentView(R.layout.activity_nfc_or_qr);
         Intent intent = getIntent();
         cardHolder = (LinearLayout)findViewById(R.id.ll_card_container);
-        model =intent.getParcelableExtra("card");
+        model =(CardModel) intent.getSerializableExtra("card");
         texts = new ArrayList<>();
         int layoutID = getResources().getIdentifier(model.templateId, "layout",getPackageName());
         View root = LayoutInflater.from(this).inflate(layoutID,cardHolder,true);
@@ -99,6 +99,12 @@ public void gotoqr1(View v)
     public void gotonfc1(View v)
     {Intent intent = new Intent(NfcOrQr.this,NfcEx.class);
         intent.putExtra("card", model);
+        startActivity(intent);
+    }
+
+    public void gotoqrs(View view)
+    {
+        Intent intent = new Intent(NfcOrQr.this,QrScanner.class);
         startActivity(intent);
     }
 

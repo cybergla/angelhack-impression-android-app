@@ -241,7 +241,7 @@ public class NfcEx extends AppCompatActivity implements NfcAdapter.OnNdefPushCom
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_ex);
         Intent intent = getIntent();
-        CardModel a=intent.getParcelableExtra("card");
+        CardModel a=(CardModel) intent.getSerializableExtra("card");
 
         messagesToSendArray.add(a.CardName);
         messagesToSendArray.add(a.templateId);

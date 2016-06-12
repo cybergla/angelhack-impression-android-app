@@ -2,6 +2,8 @@ package com.impression;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.impression.Utilities.Constants;
 import com.loopj.android.http.*;
 
 import android.preference.PreferenceActivity;
@@ -30,7 +32,7 @@ public class SignUp extends AppCompatActivity {
         // valueOfPreference + "\" in the devices settings");
         try {
 
-            SharedPreferences BT_prefs = c.getSharedPreferences("MyPref", 0); // 0
+            SharedPreferences BT_prefs = c.getSharedPreferences(Constants.PREFS, 0); // 0
             // -
             // for
             // private

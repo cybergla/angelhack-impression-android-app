@@ -196,6 +196,7 @@ public class DesignActivity extends AppCompatActivity {
             cardName.setError("please fill out card name");
             return;
         }
+        String email = SplashActivity.getPrefString("email",this);
 
         File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()+".bmp"));
         try {
@@ -218,9 +219,9 @@ public class DesignActivity extends AppCompatActivity {
             String xml = getResources().getResourceEntryName(chosenCardLayout);
             String dt = getDateTime();
             SQLiteDatabase db = openOrCreateDatabase(DataBaseHelper.DB_NAME,MODE_PRIVATE,null);
-            db.execSQL("INSERT INTO `cards` (email , xml , cardname , json , updatedAt) VALUES (?,?,?,?,?)",new Object[]{"name",xml,cardName.getText().toString(),json,dt});
+            db.execSQL("INSERT INTO `cards` (email , xml , cardname , json , updatedAt) VALUES (?,?,?,?,?)",new Object[]{email,xml,cardName.getText().toString(),json,dt});
             db.close();
-            sendToBackend(xml,json,file);
+            sendToBackend(xml,json,file,email);
         }
         catch (Exception e)
         {
@@ -228,13 +229,13 @@ public class DesignActivity extends AppCompatActivity {
         }
     }
 
-    void sendToBackend(String xml , String json ,File file) throws Exception {
+    void sendToBackend(String xml , String json ,File file,String email) throws Exception {
         byte[] b = new byte[(int) file.length()];
             FileInputStream fileInputStream = new FileInputStream(file);
             fileInputStream.read(b);
         RequestParams params = new RequestParams();
         params.put("image",new ByteArrayInputStream(b),file.getAbsolutePath());
-        params.put("email","mee");
+        params.put("email",email);
         params.put("xml",xml);
         params.put("json",json);
         AsyncHttpClient client = new AsyncHttpClient();

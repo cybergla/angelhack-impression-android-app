@@ -44,13 +44,16 @@ RecyclerView templateList;
     void fetchFromDb()
     {
         SharedPreferences pref = getSharedPreferences(Constants.PREFS ,MODE_PRIVATE);
-        String email = pref.getString("email",null);
+        String email = SplashActivity.getPrefString("email",this);
         SQLiteDatabase db = openOrCreateDatabase(DataBaseHelper.DB_NAME,MODE_PRIVATE,null);
         Cursor c = db.rawQuery("Select * from cards where email = ?",new String[]{email});
         c.moveToFirst();
         while (!c.isAfterLast()) {
             cards.add(new CardModel(c.getString(1),c.getInt(0), c.getString(2), c.getString(3), c.getString(4)));
+            c.moveToNext();
         }
+        c.close();
+        db.close();
 
     }
 }

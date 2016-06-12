@@ -38,10 +38,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qr"
+            android:text="Qr Generator"
             android:id="@+id/button2"
             android:layout_marginTop="50dp"
             android:onClick="gotoqr1"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qr Scanner"
+            android:id="@+id/button3"
+            android:layout_marginTop="50dp"
+            android:onClick="gotoqrs"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </LinearLayout>
