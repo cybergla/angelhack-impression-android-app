@@ -28,10 +28,12 @@ RecyclerView templateList;
         templateList = (RecyclerView)findViewById(R.id.rv_templates);
         templateList.setLayoutManager(new LinearLayoutManager(this));
         fetchFromDb();
-        chooseCardAdapter adapter = new chooseCardAdapter(this,cards, new GenericDataListener<Integer>() {
+        chooseCardAdapter adapter = new chooseCardAdapter(this,cards, new GenericDataListener<CardModel>() {
             @Override
             public void onData(CardModel data) {
-                Intent intent = new Intent(ChooseCard.this,nfc)
+                Intent intent = new Intent(ChooseCard.this,NfcOrQr.class);
+                intent.putExtra("card",data);
+                startActivity(intent);
 
             }
         });

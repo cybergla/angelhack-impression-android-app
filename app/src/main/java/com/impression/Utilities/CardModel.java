@@ -1,10 +1,14 @@
 package com.impression.Utilities;
 
+import java.io.Serializable;
+
 /**
  * Created by ayushgulati on 6/12/16.
  */
-public class CardModel {
+public class CardModel implements Serializable{
 
+
+    public static final long serialVersionUID = 1L ;
 
     public int id ;
     public String templateId ;

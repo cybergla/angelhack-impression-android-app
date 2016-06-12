@@ -30,7 +30,8 @@
         <activity android:name=".NfcEx" />
         <activity android:name=".QrScanner" />
         <activity android:name=".QrGenerator" />
-        <activity android:name=".ChooseCard"></activity>
+        <activity android:name=".ChooseCard" />
+        <activity android:name=".NfcOrQr"></activity>
     </application>
 
 </manifest>

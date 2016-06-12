@@ -60,6 +60,7 @@ public class DesignActivity extends AppCompatActivity {
     int currentRequestingImage=-1;
     ArrayList<EditText> texts ;
     Bitmap image ;
+    int bgcolor ;
     int chosenCardLayout = -1;
 
     EditText cardName;
@@ -166,8 +167,8 @@ public class DesignActivity extends AppCompatActivity {
 
       View crv = findViewById(R.id.card_root_view);
         ColorDrawable bg = (ColorDrawable)view.getBackground();
-        int col = bg.getColor();
-      crv.setBackgroundColor(col);
+        bgcolor = bg.getColor();
+      crv.setBackgroundColor(bgcolor);
     }
 
     public void fontColorClick(View view)
@@ -193,7 +194,7 @@ public class DesignActivity extends AppCompatActivity {
         if(cardName.getText().toString().isEmpty())
         {
             cardName.setError("please fill out card name");
-            return;s
+            return;
         }
 
         File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()));
@@ -210,6 +211,8 @@ public class DesignActivity extends AppCompatActivity {
             }
 
             object.put("texts",new JSONArray(strings));
+            object.put("fontcolor",texts.get(0).getCurrentTextColor());
+            object.put("bgcolor",bgcolor);
             object.put("image",file.getAbsolutePath());
             String json = object.toString();
             String xml = getResources().getResourceEntryName(chosenCardLayout);
@@ -232,6 +235,7 @@ public class DesignActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.put("image",new ByteArrayInputStream(b),file.getAbsolutePath());
         params.put("email","mee");
+
         params.put("xml",xml);
         params.put("json",json);
         AsyncHttpClient client = new AsyncHttpClient();

@@ -4,20 +4,25 @@ import android.app.Activity;
 import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
+import com.impression.Utilities.CardModel;
 
 public class QrScanner extends Activity implements QRCodeReaderView.OnQRCodeReadListener {
 
     private TextView myTextView;
     private QRCodeReaderView mydecoderview;
+    LinearLayout cardHolder;
+    CardModel model ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
-
+        cardHolder = (LinearLayout)findViewById(R.id.ll_card_container);
         mydecoderview = (QRCodeReaderView) findViewById(R.id.qrdecoderview);
         mydecoderview.setOnQRCodeReadListener(this);
 
@@ -28,9 +33,17 @@ public class QrScanner extends Activity implements QRCodeReaderView.OnQRCodeRead
     // Called when a QR is decoded
     // "text" : the text encoded in QR
     // "points" : points where QR control points are placed
+
+
+
     @Override
     public void onQRCodeRead(String text, PointF[] points) {
         myTextView.setText(text);
+          String [] data = text.split("#");
+          model = new CardModel(Integer.parseInt(data[3]),data[1],data[0],data[2]);
+          mydecoderview.setVisibility(View.GONE);
+
+
     }
 
 

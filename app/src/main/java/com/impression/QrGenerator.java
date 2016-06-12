@@ -1,5 +1,6 @@
 package com.impression;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.impression.Utilities.CardModel;
 
 public class QrGenerator extends AppCompatActivity {
 
@@ -18,8 +20,11 @@ public class QrGenerator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_generator);
         ImageView imageView = (ImageView) findViewById(R.id.qrimage);
+        Intent intent = getIntent();
+        CardModel a=intent.getParcelableExtra("card");
+
         try {
-            Bitmap bitmap = encodeAsBitmap("abc");
+            Bitmap bitmap = encodeAsBitmap(""+a.CardName+"#"+a.templateId+"#"+a.Json+"#"+a.id+"");
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();

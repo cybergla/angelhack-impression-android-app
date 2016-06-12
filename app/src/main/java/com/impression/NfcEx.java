@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.impression.Utilities.CardModel;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -239,8 +240,13 @@ public class NfcEx extends AppCompatActivity implements NfcAdapter.OnNdefPushCom
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_ex);
+        Intent intent = getIntent();
+        CardModel a=intent.getParcelableExtra("card");
 
-        messagesToSendArray.add("stringtopass");
+        messagesToSendArray.add(a.CardName);
+        messagesToSendArray.add(a.templateId);
+        messagesToSendArray.add(a.Json);
+        messagesToSendArray.add(a.id+"");
     }
 
     @Override
