@@ -6,18 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.impression.Utilities.DataBaseHelper;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import cz.msebera.android.httpclient.Header;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -60,19 +55,11 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //String status=getPrefString("loginstatus",getApplicationContext());
-                Intent intent = new Intent(SplashActivity.this,QrGenerator.class);
-                Intent intent1 = new Intent(SplashActivity.this,MainActivity.class);
-                String status=getPrefString("loginstatus",getApplicationContext());
-                if(status.equals("loggedin"))
-                    startActivity(intent1);
-                else
-                    startActivity(intent);
+                Intent intent = new Intent(SplashActivity.this,DesignActivity.class);
+            startActivity(intent);
             }
         },SPLASH_DISPLAY_LENGTH);
     }
-
-
 
 
     public String getDateTime() {

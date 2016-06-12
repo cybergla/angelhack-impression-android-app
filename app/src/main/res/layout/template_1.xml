@@ -1,29 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:padding="20dp"
+    android:layout_height="wrap_content">
+  <LinearLayout
+      android:id="@+id/card_root_view"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+      <LinearLayout
+          android:layout_width="0dp"
+          android:orientation="horizontal"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:layout_height="match_parent">
+          <ImageView
+              android:layout_width="100dp"
+              android:id="@+id/img_logo"
+              android:gravity="center"
+              android:src="@drawable/ic_perm_identity_black_24dp"
+              android:onClick="imgClick"
+              android:layout_height="100dp" />
+      </LinearLayout>
     
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="3"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
         >
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_Full_name"
             android:layout_width="wrap_content"
+            android:textSize="30sp"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="Full name"
             android:layout_gravity="center"
             />
         <EditText
             android:id="@+id/et_designation"
             android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:hint="Designation"
-            android:layout_gravity="center"
             />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_phno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:hint="Phno"
+            />
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:hint="Email "
+                />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Address"
+            android:id="@+id/et_address"/>
     </LinearLayout>
 
-</LinearLayout>
+
+ </LinearLayout>
+</android.support.v7.widget.CardView>

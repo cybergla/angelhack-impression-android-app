@@ -29,6 +29,10 @@ public class NfcEx extends AppCompatActivity implements NfcAdapter.OnNdefPushCom
         NfcAdapter.CreateNdefMessageCallback {
     private NfcAdapter mNfcAdapter;
 
+    public NfcEx(){
+
+    }
+
 
     public static String getPrefString(String nameOfPreference,Context c) {
         // BT_debugger.showIt(objectName + ":getPrefString getting value of \""
