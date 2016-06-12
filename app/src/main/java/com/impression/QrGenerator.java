@@ -24,7 +24,7 @@ public class QrGenerator extends AppCompatActivity {
         CardModel a=intent.getParcelableExtra("card");
 
         try {
-            Bitmap bitmap = encodeAsBitmap(""+a.CardName+"#"+a.templateId+"#"+a.Json+"#"+a.id+"");
+            Bitmap bitmap = encodeAsBitmap(""+a.CardName+"#"+a.templateId+"#"+a.Json+"#"+a.id+"#"+a.email+"");
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();

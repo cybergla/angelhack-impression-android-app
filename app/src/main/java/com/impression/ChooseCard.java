@@ -50,7 +50,7 @@ RecyclerView templateList;
         Cursor c = db.rawQuery("Select * from cards where email = ?",new String[]{email});
         c.moveToFirst();
         while (!c.isAfterLast()) {
-            cards.add(new CardModel(c.getInt(0), c.getString(2), c.getString(3), c.getString(4)));
+            cards.add(new CardModel(c.getString(1),c.getInt(0), c.getString(2), c.getString(3), c.getString(4)));
         }
 
     }

@@ -197,7 +197,7 @@ public class DesignActivity extends AppCompatActivity {
             return;
         }
 
-        File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()));
+        File file = new File(getFilesDir()+"/me" + String.valueOf(System.nanoTime()+".bmp"));
         try {
             FileOutputStream fOut = new FileOutputStream(file);
             image.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
@@ -235,7 +235,6 @@ public class DesignActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.put("image",new ByteArrayInputStream(b),file.getAbsolutePath());
         params.put("email","mee");
-
         params.put("xml",xml);
         params.put("json",json);
         AsyncHttpClient client = new AsyncHttpClient();

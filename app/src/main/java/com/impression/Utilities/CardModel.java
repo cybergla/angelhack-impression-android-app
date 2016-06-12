@@ -11,11 +11,12 @@ public class CardModel implements Serializable{
     public static final long serialVersionUID = 1L ;
 
     public int id ;
+    public String email ;
     public String templateId ;
     public String CardName ;
     public String Json ;
 
-    public CardModel(int id , String templateId , String Cd ,String json)
+    public CardModel(String email ,int id , String templateId , String Cd ,String json)
     {
         this.id = id ;
         this.templateId = templateId;
