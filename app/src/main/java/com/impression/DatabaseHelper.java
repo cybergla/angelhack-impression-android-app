@@ -41,8 +41,8 @@ class DataBaseHelper extends SQLiteOpenHelper {
                 myDataBase = context.openOrCreateDatabase("xyz",context.MODE_PRIVATE,null);
                 myDataBase.execSQL("CREATE TABLE `cards` (\n" +
                         "\t`_id`\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                        "\t`userEmail`\tTEXT,\n" +
-                        "\t`fileName`\tTEXT,\n" +
+                        "\t`email`\tTEXT,\n" +
+                        "\t`xml`\tTEXT,\n" +
                         "\t`cardname`\tTEXT,\n" +
                         "\t`json`\tTEXT,\n" +
                         "\t`updatedAt`\tTEXT\n" +
