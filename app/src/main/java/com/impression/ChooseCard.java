@@ -1,5 +1,6 @@
 package com.impression;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,8 +30,8 @@ RecyclerView templateList;
         fetchFromDb();
         chooseCardAdapter adapter = new chooseCardAdapter(this,cards, new GenericDataListener<Integer>() {
             @Override
-            public void onData(Integer data) {
-
+            public void onData(CardModel data) {
+                Intent intent = new Intent(ChooseCard.this,nfc)
 
             }
         });
