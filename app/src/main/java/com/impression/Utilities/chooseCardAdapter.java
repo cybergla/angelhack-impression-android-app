@@ -50,7 +50,7 @@ public class chooseCardAdapter extends RecyclerView.Adapter<chooseCardAdapter.Vi
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.textView);
+           // name = (TextView) itemView.findViewById(R.id.textView);
             tempName = (TextView)itemView.findViewById(R.id.textView2);
             itemView.setOnClickListener(this);
         }
